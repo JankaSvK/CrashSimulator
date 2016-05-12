@@ -5,7 +5,7 @@ public class Enviroment{
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		new Panel();
+		new Window();
 		System.out.println("a");
 	}
 	

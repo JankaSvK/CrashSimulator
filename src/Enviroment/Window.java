@@ -15,6 +15,7 @@ public class Window {
 	public Window() {
 		prepareGUI();
 		
+		
 		//setBackground(Color.white);
 		
 	}

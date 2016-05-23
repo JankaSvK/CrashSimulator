@@ -9,11 +9,26 @@ public class Enviroment{
 	private Car car = new Car();
 	private Pendant pendant = new Pendant();
 	
+	private double startTime;
+	
 	public final double INF = 9999;
 	
 	public Enviroment(){
-	
+		startTime = System.currentTimeMillis();
 		System.out.println(Distance(20,100,60));
+		
+		new Frame();	
+	}
+	
+	/**
+	 * Check if a car hitted pendant.
+	 * @return True if a car hitted, false otherwise.
+	 */
+	private boolean isCrash(){
+		if(distanceBetween(pendant.returnX(), pendant.returnY(), car.returnX(), car.returnY()) 
+			< 5) return true;
+		return false;
+		
 	}
 	
 	/**

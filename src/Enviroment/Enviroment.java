@@ -17,7 +17,8 @@ public class Enviroment{
 		startTime = System.currentTimeMillis();
 		System.out.println(Distance(20,100,60));
 		
-		new Frame();	
+		Frame frame = new Frame();	
+		frame.reDraw();
 	}
 	
 	/**

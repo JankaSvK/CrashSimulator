@@ -31,10 +31,10 @@ public class Frame {
 		panel.repaint();
 	}
 	
-	public void drawObjects(int cx, int cy, int px, int py){
+	public void drawObjects(int cx, int cy, int px, int py, double speedOfCar){
 		panel.setCarCor(cx, cy);
 		panel.setPendantCor(px, py);
-		panel.carSpeed = 50;
+		panel.carSpeed = speedOfCar;
 		panel.repaint();
 		
 	}

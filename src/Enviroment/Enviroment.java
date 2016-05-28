@@ -6,7 +6,7 @@ package Enviroment;
  */
 public class Enviroment{
 	
-	private Car car = new Car();
+	private Car car;
 	private Pendant pendant = new Pendant();
 	
 	
@@ -18,18 +18,22 @@ public class Enviroment{
 		startTime = System.currentTimeMillis();
 		System.out.println(Distance(20,100,60));
 		
+		car = new Car(startTime);
 		Frame frame = new Frame();	
 		
 		//frame.drawCar(50, 100);
 		
 		
+		car.brake(50);
+		
 		double actTime = System.currentTimeMillis();
-		while (actTime - startTime <= 10000) {
+		while (actTime - startTime <= 13000) {
 			actTime = System.currentTimeMillis();
-			int x = (int) Math.ceil((car.speed / 1000) * (actTime - startTime));
-			int y = (int) Math.ceil((pendant.speed / 1000) * (actTime - startTime));
-			frame.drawObjects(x, 290, 390, 235+y);
 			
+			car.actualize(actTime);
+			
+			int y = (int) Math.ceil((pendant.speed / 1000) * (actTime - startTime));
+			frame.drawObjects(car.returnX(), car.returnY(), 390, 235+y, car.speedKM());
 			
 			if(isCrash()) echo("Havarka sa stala");
 		}

@@ -30,6 +30,8 @@ public class Enviroment{
 			int y = (int) Math.ceil((pendant.speed / 1000) * (actTime - startTime));
 			frame.drawObjects(x, 290, 390, 235+y);
 			
+			
+			if(isCrash()) echo("Havarka sa stala");
 		}
 		
 	}
@@ -88,6 +90,9 @@ public class Enviroment{
 	}
 	
 	public void echo(double x){
+		System.out.println(x);
+	}
+	public void echo(String x){
 		System.out.println(x);
 	}
 	

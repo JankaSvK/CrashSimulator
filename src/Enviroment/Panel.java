@@ -12,13 +12,24 @@ public class Panel extends JPanel {
 	public int carX;
 	public int carY;
 	
+	public double carSpeed;
+	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g2 = (Graphics2D) g;
 		
+		drawCarSpeed();
 		drawPendant(pendantX, pendantY);
 		drawCar(carX,carY);
 	}
+	
+	private void drawCarSpeed() {
+		// TODO Auto-generated method stub
+		Integer speed = new Integer((int) Math.floor(carSpeed));
+		g2.drawString(speed.toString(), 10, 30);
+	}
+
+	
 	
 	/**
 	 * Set pendant coordinates on which it will be drawed.
@@ -48,9 +59,8 @@ public class Panel extends JPanel {
 	public void drawPendant(int x, int y) {
 		final int r = 5;
 		
-		System.out.println("a");
-		g2.setColor(Color.black);
-		System.out.println("ab");
+		//g2.setColor(Color.black);
+		
 		Shape circle = 
 				new Ellipse2D.Double(x - r, y - r, 2.0*r, 2.0*r);
 		g2.draw(circle);

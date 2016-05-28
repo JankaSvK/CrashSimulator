@@ -34,7 +34,9 @@ public class Frame {
 	public void drawObjects(int cx, int cy, int px, int py){
 		panel.setCarCor(cx, cy);
 		panel.setPendantCor(px, py);
+		panel.carSpeed = 50;
 		panel.repaint();
+		
 	}
 	
 }

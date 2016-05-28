@@ -8,7 +8,7 @@ public class Enviroment{
 	
 	private Car car;
 	private Pendant pendant;
-	
+	private Frame frame;
 	
 	private double startTime;
 	
@@ -18,34 +18,42 @@ public class Enviroment{
 		startTime = System.currentTimeMillis();
 		//System.out.println(Distance(pendant, 20,100,60));
 		
-		car = new Car(startTime);
+		car = new Car(startTime, this);
 		pendant = new Pendant(startTime);
-		Frame frame = new Frame();	
+		frame = new Frame();	
 		
 		//frame.drawCar(50, 100);
 		
 		
-		car.brake(50);
+		//car.brake(50);
 		
 		double actTime = System.currentTimeMillis();
 		while (actTime - startTime <= 13000) {
 			actTime = System.currentTimeMillis();
 			
 			car.actualize(actTime);
+			car.ArtificialIntelligence();
 			pendant.actualize(actTime);
 			
 			frame.drawObjects((int)car.returnX(), (int)car.returnY(), (int)pendant.returnX(), (int)pendant.returnY(), car.speedKM());
 			
+			
+			
 			if(isCrash(pendant, car)){
 				echo("Havarka sa stala");
 				processCrash();
+				
+				break;
 			}
 		}
 		
 	}
 	
 	private void processCrash() {
-		
+		double carSpeed = car.speed;
+		frame.printSpeedInCrash(car.speedKM());
+		car.speed = 0;
+		pendant.speed = 0;
 	}
 
 	/**
@@ -61,6 +69,12 @@ public class Enviroment{
 		return false;		
 	}
 	
+	
+	public double Distance(double angle){
+		if(pendant == null || car == null) return -1;
+		return Distance(pendant, car.returnX(), car.returnY(), angle);
+	}
+		
 	/**
 	 * Computes distance to nearest object in given angle.
 	 * @param x X coordinate of a car
@@ -68,7 +82,7 @@ public class Enviroment{
 	 * @param angle Angle in which is sensor used.
 	 * @return Distance as an ultrasonic sensor in given angle.
 	 */
-	public double Distance(Pendant pendant, int x, int y, double angle){
+	public double Distance(Pendant pendant, double x, double y, double angle){
 		double deltaY = intersection(pendant, x, y, angle);
 		double expectedY = y - deltaY;
 		if(pendant.returnY() >= expectedY - 5 && pendant.returnY() <= expectedY + 5){
@@ -85,7 +99,7 @@ public class Enviroment{
 	 * @param angle Angle in which is sensor used.
 	 * @return Y-coordinate of intersection.
 	 */
-	private double intersection(Pendant pendant, int x, int y, double angle){
+	private double intersection(Pendant pendant, double x, double y, double angle){
 		double deltaX = pendant.returnX() - x;
 	
 		return deltaX * Math.tan(Math.toRadians(angle));

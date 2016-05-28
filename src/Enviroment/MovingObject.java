@@ -10,7 +10,7 @@ public class MovingObject {
 	public double posX = 0;
 	public double posY = 0;
 	
-	public double lastRedrawed = 0;
+	public double lastRedrawn = 0;
 
 	public double returnX(){
 		return posX;
@@ -21,7 +21,7 @@ public class MovingObject {
 	}
 	
 	public void actualizeRedrawed(double time){
-		lastRedrawed = time;
+		lastRedrawn = time;
 	}
 	
 	

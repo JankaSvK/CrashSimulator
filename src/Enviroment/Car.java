@@ -4,17 +4,20 @@ public class Car extends MovingObject {
 	public int NumOfSensors = 1;
 	public double actualSlowdown = 0;
 	
+	Enviroment enviroment;
 	public final int width = 60;
 	public final int height = 40;
 	
-	public Car(double StartTime) {
+	public Car(double StartTime, Enviroment enviroment) {
 		speed = 50 / 3.6; /*Prevod na m/s*/
 		maxSlowdown = 4.5; /*Pri optimálnom brzdení môže automobil na suchej betónovej ceste dosiahnuť maximálne spomalenie 4,5 m/s^2*/
 		
 		posX = 50;
 		posY = 290;
 		
-		lastRedrawed = StartTime;
+		lastRedrawn = StartTime;
+		
+		this.enviroment = enviroment;
 	}
 	
 
@@ -28,11 +31,11 @@ public class Car extends MovingObject {
 	}
 	
 	public void actualize(double actualTime){
-		double diff = actualTime - lastRedrawed;
+		double diff = actualTime - lastRedrawn;
 		if(diff < 50) return;
 		diff /= 1000;
 		
-		lastRedrawed = actualTime;
+		lastRedrawn = actualTime;
 		
 		posX = (posX + ((speed * METERSTODISPLAY) * diff) - (actualSlowdown * METERSTODISPLAY)*diff*diff/2); /* s2 = s1 + v0*t + a*t^2/2 */
 		actualizeSpeed(diff);
@@ -48,9 +51,10 @@ public class Car extends MovingObject {
 		}
 	}
 	
-	private void ArtificialIntelligence(){
-		
-		
+	public void ArtificialIntelligence(){
+		if(enviroment.Distance(60) < 100){
+			brake(100);
+		}
 	}
 
 

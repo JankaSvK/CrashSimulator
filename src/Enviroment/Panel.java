@@ -11,6 +11,8 @@ public class Panel extends JPanel {
 	public int pendantY;
 	public int carX;
 	public int carY;
+	public boolean crash = false;
+	public double speedInCrash = 0;
 	
 	public double carSpeed;
 	
@@ -21,6 +23,9 @@ public class Panel extends JPanel {
 		drawCarSpeed();
 		drawPendant(pendantX, pendantY);
 		drawCar(carX,carY);
+		if(crash) {
+			printSpeedInCrash(speedInCrash);
+		}
 	}
 	
 	private void drawCarSpeed() {
@@ -76,7 +81,14 @@ public class Panel extends JPanel {
 		final int b = 40;
 		
 		g2.setColor(Color.black);
-		g2.fillRect(x, y, a, b);
+		g2.fillRect(x - a/2, y - b/2, a, b);
 		
+	}
+
+	public void printSpeedInCrash(double carSpeed2) {
+		// TODO Auto-generated method stub
+		
+		Integer speed = new Integer((int) Math.floor(carSpeed2));
+		g2.drawString("Speed of the car during the crash: "+speed.toString() + "km/h", 10, 60);
 	}	
 }

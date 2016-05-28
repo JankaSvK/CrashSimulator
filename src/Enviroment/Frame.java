@@ -38,5 +38,11 @@ public class Frame {
 		panel.repaint();
 		
 	}
+
+	public void printSpeedInCrash(double carSpeed) {
+		panel.speedInCrash = carSpeed;
+		panel.crash = true;
+		panel.repaint();
+	}
 	
 }

@@ -9,15 +9,15 @@ public class Pendant extends MovingObject {
 		posX = 390;
 		posY = 235;	
 		
-		lastRedrawed = StartTime;
+		lastRedrawn = StartTime;
 	}
 
 	public void actualize(double actualTime) {
-		double diff = actualTime - lastRedrawed;
+		double diff = actualTime - lastRedrawn;
 		if(diff < 50) return;
 		diff /= 1000;
 		
-		lastRedrawed = actualTime;
+		lastRedrawn = actualTime;
 		//int y = (int) Math.ceil((pendant.speed / 1000) * (actTime - startTime));
 		
 		posY = (posY + speed * METERSTODISPLAY * diff); /* s2 = s1 + v0*t */

@@ -2,13 +2,13 @@ package Enviroment;
 
 public class MovingObject {
 
-	public double speed;
-	private double MaxSlowdown;
+	public double speed = 0;
+	public double maxSlowdown = 0;
 	
-	private int posX;
-	private int posY;
+	public int posX = 0;
+	public int posY = 0;
 	
-	public double lastRedrawed;
+	public double lastRedrawed = 0;
 
 	public int returnX(){
 		return posX;
@@ -16,6 +16,10 @@ public class MovingObject {
 	
 	public int returnY(){
 		return posY;
+	}
+	
+	public void actualizeRedrawed(double time){
+		lastRedrawed = time;
 	}
 	
 	

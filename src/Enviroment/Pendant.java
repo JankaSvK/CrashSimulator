@@ -1,21 +1,14 @@
 package Enviroment;
 
-public class Pendant {
+public class Pendant extends MovingObject {
 	
-	public double speed = 5;
-	private final double MaxSlowdown = 1;
-	
-	private final int posX = 100;
-	private int posY = 0;
-	
-	public double lastRedrawed;
-
-	public int returnX(){
-		return posX;
-	}
-	
-	public int returnY(){
-		return posY;
+	public Pendant() {
+		speed = 5;
+		maxSlowdown = 100;
+		
+		posX = 100;
+		posY = 0;	
+		
 	}
 	
 }

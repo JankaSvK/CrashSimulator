@@ -31,10 +31,10 @@ public class Car extends MovingObject {
 		
 		lastRedrawed = actualTime;
 		
-		posX = (int) (posX + ((speed * METERSTODISPLAY) * diff) - (actualSlowdown * METERSTODISPLAY)*diff*diff/2); /* s2 = s1 + v0*t + a*t^2/2 */
+		posX = (posX + ((speed * METERSTODISPLAY) * diff) - (actualSlowdown * METERSTODISPLAY)*diff*diff/2); /* s2 = s1 + v0*t + a*t^2/2 */
 		actualizeSpeed(diff);
 		
-		System.out.println(posX + " " + diff + " " + speed + " " + actualSlowdown);
+		//System.out.println(posX + " " + diff + " " + speed + " " + actualSlowdown);
 	}
 	
 	public void actualizeSpeed(double diff) {

@@ -4,6 +4,9 @@ public class Car extends MovingObject {
 	public int NumOfSensors = 1;
 	public double actualSlowdown = 0;
 	
+	public final int width = 60;
+	public final int height = 40;
+	
 	public Car(double StartTime) {
 		speed = 50 / 3.6; /*Prevod na m/s*/
 		maxSlowdown = 4.5; /*Pri optimálnom brzdení môže automobil na suchej betónovej ceste dosiahnuť maximálne spomalenie 4,5 m/s^2*/

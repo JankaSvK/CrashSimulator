@@ -3,7 +3,7 @@ package Enviroment;
 public class Pendant extends MovingObject {
 	
 	public Pendant(double StartTime) {
-		speed = 2 / 3.6;
+		speed = 5 / 3.6;
 		maxSlowdown = 100;
 		
 		posX = 390;

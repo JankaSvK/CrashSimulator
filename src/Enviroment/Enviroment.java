@@ -36,20 +36,29 @@ public class Enviroment{
 			
 			frame.drawObjects((int)car.returnX(), (int)car.returnY(), (int)pendant.returnX(), (int)pendant.returnY(), car.speedKM());
 			
-			if(isCrash(pendant, car)) echo("Havarka sa stala");
+			if(isCrash(pendant, car)){
+				echo("Havarka sa stala");
+				processCrash();
+			}
 		}
 		
 	}
 	
+	private void processCrash() {
+		
+	}
+
 	/**
 	 * Check if a car hitted pendant.
 	 * @return True if a car hitted, false otherwise.
 	 */
 	private boolean isCrash(Pendant pendant, Car car){
-		if(distanceBetween(pendant.returnX(), pendant.returnY(), car.returnX(), car.returnY()) 
-			< 5) return true;
-		return false;
-		
+		if(pendant.returnX() >= car.returnX() - car.width / 2 
+				&& pendant.returnY() <= car.returnY() + car.height / 2 
+				&& pendant.returnX() <= car.returnX() + car.width / 2
+				&& pendant.returnY() >= car.returnY() - car.height / 2
+				) return true;
+		return false;		
 	}
 	
 	/**

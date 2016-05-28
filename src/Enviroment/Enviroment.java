@@ -18,7 +18,19 @@ public class Enviroment{
 		System.out.println(Distance(20,100,60));
 		
 		Frame frame = new Frame();	
-		frame.reDraw();
+		
+		//frame.drawCar(50, 100);
+		
+		
+		double actTime = System.currentTimeMillis();
+		while (actTime - startTime <= 10000) {
+			actTime = System.currentTimeMillis();
+			int x = (int) Math.ceil((car.speed / 1000) * (actTime - startTime));
+			int y = (int) Math.ceil((pendant.speed / 1000) * (actTime - startTime));
+			frame.drawObjects(x, 290, 390, 235+y);
+			
+		}
+		
 	}
 	
 	/**

@@ -21,8 +21,19 @@ public class Frame {
 	public void reDraw(){
 		panel.setPendantCor(50, 50);
 		panel.repaint();
-		//thread.sleep 
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		panel.setPendantCor(100, 50);
+		panel.repaint();
+	}
+	
+	public void drawObjects(int cx, int cy, int px, int py){
+		panel.setCarCor(cx, cy);
+		panel.setPendantCor(px, py);
 		panel.repaint();
 	}
 	

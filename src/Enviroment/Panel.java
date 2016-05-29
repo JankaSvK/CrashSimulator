@@ -86,9 +86,18 @@ public class Panel extends JPanel {
 	}
 
 	public void printSpeedInCrash(double carSpeed2) {
-		// TODO Auto-generated method stub
-		
 		Integer speed = new Integer((int) Math.floor(carSpeed2));
 		g2.drawString("Speed of the car during the crash: "+speed.toString() + "km/h", 10, 60);
+		
+		int chance = 0;
+		if(speed <= 30) chance = 97;
+		else if(speed <= 50) chance = 80;
+		else if(speed <= 55) chance = 50;
+		else if(speed <= 60) chance = 10;
+		else if(speed > 60) {
+			g2.drawString("Chance of surviving is less than 10%", 10, 90);
+			return;
+		}
+		g2.drawString("Chance of surviving: "+chance + "%", 10, 90);
 	}	
 }

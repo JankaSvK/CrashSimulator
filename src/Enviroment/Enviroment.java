@@ -22,13 +22,8 @@ public class Enviroment{
 		pendant = new Pendant(startTime);
 		frame = new Frame();	
 		
-		//frame.drawCar(50, 100);
-		
-		
-		//car.brake(50);
-		
 		double actTime = System.currentTimeMillis();
-		while (actTime - startTime <= 13000) {
+		while (actTime - startTime <= 15000) {
 			actTime = System.currentTimeMillis();
 			
 			car.actualize(actTime);
@@ -36,8 +31,6 @@ public class Enviroment{
 			pendant.actualize(actTime);
 			
 			frame.drawObjects((int)car.returnX(), (int)car.returnY(), (int)pendant.returnX(), (int)pendant.returnY(), car.speedKM());
-			
-			
 			
 			if(isCrash(pendant, car)){
 				echo("Havarka sa stala");
@@ -47,6 +40,20 @@ public class Enviroment{
 			}
 		}
 		
+	}
+	
+	public double isInZone(double angle){
+		if(pendant == null || car == null) return -1;
+		double minY = car.returnY() - intersection(pendant, car.returnX(), car.returnY(), angle);
+		double maxY = car.returnY() - intersection(pendant, car.returnX(), car.returnY(), -angle);
+		
+		//echo(minY + " " + maxY);
+		
+		if(pendant.returnY() >= minY && pendant.returnY() <= maxY){
+			return distanceBetween(pendant.returnX(), pendant.returnY(), car.returnX(), car.returnY());
+		} else {
+			return INF;
+		}
 	}
 	
 	private void processCrash() {

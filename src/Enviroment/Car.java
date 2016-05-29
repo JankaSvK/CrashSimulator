@@ -9,7 +9,7 @@ public class Car extends MovingObject {
 	public final int height = 40;
 	
 	public Car(double StartTime, Enviroment enviroment) {
-		speed = 50 / 3.6; /*Prevod na m/s*/
+		speed = 70 / 3.6; /*Prevod na m/s*/
 		maxSlowdown = 4.5; /*Pri optimálnom brzdení môže automobil na suchej betónovej ceste dosiahnuť maximálne spomalenie 4,5 m/s^2*/
 		
 		posX = 50;
@@ -20,7 +20,6 @@ public class Car extends MovingObject {
 		this.enviroment = enviroment;
 	}
 	
-
 	public double speedKM() {
 		return speed*3.6;
 	}
@@ -40,7 +39,6 @@ public class Car extends MovingObject {
 		posX = (posX + ((speed * METERSTODISPLAY) * diff) - (actualSlowdown * METERSTODISPLAY)*diff*diff/2); /* s2 = s1 + v0*t + a*t^2/2 */
 		actualizeSpeed(diff);
 		
-		//System.out.println(posX + " " + diff + " " + speed + " " + actualSlowdown);
 	}
 	
 	public void actualizeSpeed(double diff) {
@@ -52,7 +50,7 @@ public class Car extends MovingObject {
 	}
 	
 	public void ArtificialIntelligence(){
-		if(enviroment.Distance(60) < 100){
+		if(enviroment.isInZone(40) < 100){
 			brake(100);
 		}
 	}

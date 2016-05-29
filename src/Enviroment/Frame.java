@@ -18,6 +18,11 @@ public class Frame {
 		frame.setVisible(true);	
 	}
 	
+	public void close(){
+		frame.setVisible(false);
+		frame.dispose();
+	}
+	
 	/**
 	 * Will tell the panel to draw car and pendant on giver coords.
 	 * @param cx

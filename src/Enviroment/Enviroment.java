@@ -14,7 +14,7 @@ public class Enviroment{
 	
 	public final double INF = 9999;
 	
-	public Enviroment(int set){
+	public Enviroment(String name){
 		
 		startTime = System.currentTimeMillis();
 		
@@ -22,10 +22,11 @@ public class Enviroment{
 		pendant = new Pendant(startTime);
 		frame = new Frame();	
 		
-		reader = new ReadingFromAFile("in"+set+".txt");
+		reader = new ReadingFromAFile(name);
 		printAndSetReadedConstants(car, pendant);
 	
 		
+		boolean crash = false;
 		double actTime = System.currentTimeMillis();
 		while (actTime - startTime <= 15000) {
 			actTime = System.currentTimeMillis();
@@ -37,10 +38,26 @@ public class Enviroment{
 			frame.drawObjects((int)car.returnX(), (int)car.returnY(), (int)pendant.returnX(), (int)pendant.returnY(), car.speedKM());
 			
 			if(isCrash(pendant, car)){
+				echo("Crash!");
+				crash = true;
 				processCrash();
 				break;
 			}
 		}
+		
+		if(!crash){
+			car.speed = 0;
+			pendant.speed = 0;
+			
+			echo("No crash!");
+		}
+		
+		actTime = System.currentTimeMillis();
+		double newTime = actTime;
+		while (actTime - newTime <= 2500) {
+			actTime = System.currentTimeMillis();
+		}
+		frame.close();
 		
 	}
 	
@@ -58,7 +75,7 @@ public class Enviroment{
 		echo("Simulation was setuped to these constants:");
 		echo("Speed of the car: " + car.speedKM());
 		echo("Max. slowdown of the car: " + car.maxSlowdown);
-		echo("Speed of the pendant: " + pendant.speed);
+		echo("Speed of the pendant: " + pendant.speed * 3.6);
 		echo("Angle of the zone of the sensor: " + car.angle);
 		
 		car.originalSpeed = car.speed;

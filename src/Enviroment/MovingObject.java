@@ -2,7 +2,8 @@ package Enviroment;
 
 public class MovingObject {
 
-	public final double METERSTODISPLAY = 8.5;
+	// Special constant of convertion to speed on display
+	public final double METERSTODISPLAY = 5;
 	
 	public double speed = 0;
 	public double maxSlowdown = 0;

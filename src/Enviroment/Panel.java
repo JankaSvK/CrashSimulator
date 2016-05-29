@@ -28,13 +28,14 @@ public class Panel extends JPanel {
 		}
 	}
 	
+	/**
+	 * Prints actual speed of the car.
+	 */
 	private void drawCarSpeed() {
 		// TODO Auto-generated method stub
 		Integer speed = new Integer((int) Math.floor(carSpeed));
 		g2.drawString(speed.toString(), 10, 30);
 	}
-
-	
 	
 	/**
 	 * Set pendant coordinates on which it will be drawed.
@@ -85,6 +86,11 @@ public class Panel extends JPanel {
 		
 	}
 
+	/**
+	 * Print the speed of the car during the crash.
+	 * It also prints an information about the chance to survive the crash (as a pendant).
+	 * @param carSpeed2
+	 */
 	public void printSpeedInCrash(double carSpeed2) {
 		Integer speed = new Integer((int) Math.floor(carSpeed2));
 		g2.drawString("Speed of the car during the crash: "+speed.toString() + "km/h", 10, 60);

@@ -6,16 +6,15 @@ package Enviroment;
  */
 public class Enviroment{
 	
-	private Car car;
-	private Pendant pendant;
-	private Frame frame;
+	Car car;
+	Pendant pendant;
+	Frame frame;
 	ReadingFromAFile reader;
-	
-	private double startTime;
+	double startTime;
 	
 	public final double INF = 9999;
 	
-	public Enviroment(){
+	public Enviroment(int set){
 		
 		startTime = System.currentTimeMillis();
 		
@@ -23,7 +22,7 @@ public class Enviroment{
 		pendant = new Pendant(startTime);
 		frame = new Frame();	
 		
-		reader = new ReadingFromAFile("in2.txt");
+		reader = new ReadingFromAFile("in"+set+".txt");
 		printAndSetReadedConstants(car, pendant);
 	
 		
@@ -38,20 +37,23 @@ public class Enviroment{
 			frame.drawObjects((int)car.returnX(), (int)car.returnY(), (int)pendant.returnX(), (int)pendant.returnY(), car.speedKM());
 			
 			if(isCrash(pendant, car)){
-				echo("Havarka sa stala");
 				processCrash();
-				
 				break;
 			}
 		}
 		
 	}
 	
+	/**
+	 * Outpus readed constants from and file and set them to objects.
+	 * @param car
+	 * @param p
+	 */
 	private void printAndSetReadedConstants(Car car, Pendant p) {
 		car.speed = reader.speedCar / 3.6;
 		car.maxSlowdown = reader.maxSlowDown;
 		car.angle = reader.angle;
-		p.speed = reader.speedPendant;
+		p.speed = reader.speedPendant / 3.6;
 		
 		echo("Simulation was setuped to these constants:");
 		echo("Speed of the car: " + car.speedKM());
@@ -63,6 +65,13 @@ public class Enviroment{
 	
 	}
 
+	/**
+	 * Check if a pendant is in zone seen by the sensor.
+	 * If he is seen then it will return the distance between a car and him.
+	 * Otherwise it return Infinity.
+	 * @param angle
+	 * @return
+	 */
 	public double isInZone(double angle){
 		if(pendant == null || car == null) return -1;
 		double minY = car.returnY() - intersection(pendant, car.returnX(), car.returnY(), angle);
@@ -75,6 +84,10 @@ public class Enviroment{
 		}
 	}
 	
+	/**
+	 * After a crash it will stop pendant and also a car.
+	 * Then it will print the speed of the car during the crash.
+	 */
 	private void processCrash() {
 		double carSpeed = car.speed;
 		frame.printSpeedInCrash(car.speedKM());
@@ -95,12 +108,6 @@ public class Enviroment{
 		return false;		
 	}
 	
-	
-	public double Distance(double angle){
-		if(pendant == null || car == null) return -1;
-		return Distance(pendant, car.returnX(), car.returnY(), angle);
-	}
-		
 	/**
 	 * Computes distance to nearest object in given angle.
 	 * @param x X coordinate of a car
@@ -143,6 +150,10 @@ public class Enviroment{
 		return Math.sqrt(Math.pow(x1-x2,2) + Math.pow(y1-y2,2));
 	}
 	
+	/**
+	 * Synonym to System.out.println - it is shorter variant.
+	 * @param x
+	 */
 	public void echo(double x){
 		System.out.println(x);
 	}

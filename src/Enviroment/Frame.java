@@ -18,19 +18,14 @@ public class Frame {
 		frame.setVisible(true);	
 	}
 	
-	public void reDraw(){
-		panel.setPendantCor(50, 50);
-		panel.repaint();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		panel.setPendantCor(100, 50);
-		panel.repaint();
-	}
-	
+	/**
+	 * Will tell the panel to draw car and pendant on giver coords.
+	 * @param cx
+	 * @param cy
+	 * @param px
+	 * @param py
+	 * @param speedOfCar
+	 */
 	public void drawObjects(int cx, int cy, int px, int py, double speedOfCar){
 		panel.setCarCor(cx, cy);
 		panel.setPendantCor(px, py);
@@ -39,6 +34,10 @@ public class Frame {
 		
 	}
 
+	/**
+	 * Will tell the panel the speed in crash.
+	 * @param carSpeed
+	 */
 	public void printSpeedInCrash(double carSpeed) {
 		panel.speedInCrash = carSpeed;
 		panel.crash = true;

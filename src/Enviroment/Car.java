@@ -11,22 +11,26 @@ public class Car extends MovingObject {
 	public int angle;
 	
 	public Car(double StartTime, Enviroment enviroment) {
-		//speed = 70 / 3.6; /*Prevod na m/s*/
-		//maxSlowdown = 4.5; /*Pri optimálnom brzdení môže automobil na suchej betónovej ceste dosiahnuť maximálne spomalenie 4,5 m/s^2*/
-		
 		posX = 50;
 		posY = 290;
 		
 		lastRedrawn = StartTime;
-		
 		this.enviroment = enviroment;
 	}
 	
+	/**
+	 * Return speed of the car in Kilometers per hour (instead of meters per second).
+	 * @return
+	 */
 	public double speedKM() {
 		return speed*3.6;
 	}
 
 	
+	/**
+	 * Compute slowdown.
+	 * @param percent
+	 */
 	public void brake(int percent){
 		actualSlowdown = percent  * maxSlowdown / 100;
 	
@@ -36,6 +40,10 @@ public class Car extends MovingObject {
 		}
 	}
 	
+	/**
+	 * Set new position of the car and speed.
+	 * @param actualTime
+	 */
 	public void actualize(double actualTime){
 		double diff = actualTime - lastRedrawn;
 		if(diff < 50) return;
@@ -48,6 +56,10 @@ public class Car extends MovingObject {
 		
 	}
 	
+	/**
+	 * Function for computing speed.
+	 * @param diff
+	 */
 	public void actualizeSpeed(double diff) {
 		speed = speed - diff * actualSlowdown;
 		if(speed <= 0) {
@@ -56,6 +68,9 @@ public class Car extends MovingObject {
 		}
 	}
 	
+	/**
+	 * ArtificialIntelligence for the car using the sensrs.
+	 */
 	public void ArtificialIntelligence(){
 		if(enviroment.isInZone(angle) < 100){
 			brake(100);

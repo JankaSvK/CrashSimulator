@@ -20,9 +20,4 @@ public class MovingObject {
 		return posY;
 	}
 	
-	public void actualizeRedrawed(double time){
-		lastRedrawn = time;
-	}
-	
-	
 }

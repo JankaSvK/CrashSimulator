@@ -1,16 +1,18 @@
 package Enviroment;
 
 public class Car extends MovingObject {
-	public int NumOfSensors = 1;
 	public double actualSlowdown = 0;
 	
 	Enviroment enviroment;
 	public final int width = 60;
 	public final int height = 40;
 	
+	public double originalSpeed;
+	public int angle;
+	
 	public Car(double StartTime, Enviroment enviroment) {
-		speed = 70 / 3.6; /*Prevod na m/s*/
-		maxSlowdown = 4.5; /*Pri optimálnom brzdení môže automobil na suchej betónovej ceste dosiahnuť maximálne spomalenie 4,5 m/s^2*/
+		//speed = 70 / 3.6; /*Prevod na m/s*/
+		//maxSlowdown = 4.5; /*Pri optimálnom brzdení môže automobil na suchej betónovej ceste dosiahnuť maximálne spomalenie 4,5 m/s^2*/
 		
 		posX = 50;
 		posY = 290;
@@ -27,6 +29,11 @@ public class Car extends MovingObject {
 	
 	public void brake(int percent){
 		actualSlowdown = percent  * maxSlowdown / 100;
+	
+		if(speed > originalSpeed) {
+			actualSlowdown = 0; 
+			speed = originalSpeed;
+		}
 	}
 	
 	public void actualize(double actualTime){
@@ -50,8 +57,10 @@ public class Car extends MovingObject {
 	}
 	
 	public void ArtificialIntelligence(){
-		if(enviroment.isInZone(40) < 100){
+		if(enviroment.isInZone(angle) < 100){
 			brake(100);
+		} else { // zobrazovanie brzdnej drahy
+			brake(-50);
 		}
 	}
 

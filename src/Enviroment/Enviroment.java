@@ -1,7 +1,7 @@
 package Enviroment;
 
 /**
- * @author janka
+ * @author Jana Bátoryová
  *
  */
 public class Enviroment{
@@ -9,18 +9,23 @@ public class Enviroment{
 	private Car car;
 	private Pendant pendant;
 	private Frame frame;
+	ReadingFromAFile reader;
 	
 	private double startTime;
 	
 	public final double INF = 9999;
 	
 	public Enviroment(){
+		
 		startTime = System.currentTimeMillis();
-		//System.out.println(Distance(pendant, 20,100,60));
 		
 		car = new Car(startTime, this);
 		pendant = new Pendant(startTime);
 		frame = new Frame();	
+		
+		reader = new ReadingFromAFile("in2.txt");
+		printAndSetReadedConstants(car, pendant);
+	
 		
 		double actTime = System.currentTimeMillis();
 		while (actTime - startTime <= 15000) {
@@ -42,13 +47,27 @@ public class Enviroment{
 		
 	}
 	
+	private void printAndSetReadedConstants(Car car, Pendant p) {
+		car.speed = reader.speedCar / 3.6;
+		car.maxSlowdown = reader.maxSlowDown;
+		car.angle = reader.angle;
+		p.speed = reader.speedPendant;
+		
+		echo("Simulation was setuped to these constants:");
+		echo("Speed of the car: " + car.speedKM());
+		echo("Max. slowdown of the car: " + car.maxSlowdown);
+		echo("Speed of the pendant: " + pendant.speed);
+		echo("Angle of the zone of the sensor: " + car.angle);
+		
+		car.originalSpeed = car.speed;
+	
+	}
+
 	public double isInZone(double angle){
 		if(pendant == null || car == null) return -1;
 		double minY = car.returnY() - intersection(pendant, car.returnX(), car.returnY(), angle);
 		double maxY = car.returnY() - intersection(pendant, car.returnX(), car.returnY(), -angle);
-		
-		//echo(minY + " " + maxY);
-		
+			
 		if(pendant.returnY() >= minY && pendant.returnY() <= maxY){
 			return distanceBetween(pendant.returnX(), pendant.returnY(), car.returnX(), car.returnY());
 		} else {

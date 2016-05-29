@@ -1,0 +1,5 @@
+Speed of the car: 50
+Max. slowdown of the car: 4.5
+Speed of the pendant: 5
+Angle of the zone of the sensor: 40
+

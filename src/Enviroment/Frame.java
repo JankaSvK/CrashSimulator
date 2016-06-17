@@ -15,7 +15,8 @@ public class Frame {
 		panel.setPreferredSize(new Dimension(800,600));
 		frame.add(panel);
 		
-		//TODO: doplnit scrollbary
+		JScrollPane pane = new JScrollPane(panel);
+		frame.getContentPane().add(pane);
 		
 		frame.pack();
 		frame.setVisible(true);	
@@ -26,6 +27,10 @@ public class Frame {
 		frame.dispose();
 	}
 	
+	/**
+	 * Open a window for choosing a file.
+	 * @return Absolute path of selected file.
+	 */
 	public String chooseAFile() {
 		JFileChooser fileChooser = new JFileChooser();
 		//fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));

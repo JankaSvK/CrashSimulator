@@ -21,7 +21,7 @@ public class Enviroment{
 	public Enviroment(){
 		
 		frame = new Frame();	
-		reader = new ReadingFromAFile(frame.chooseAFile());
+		reader = new ReadingFromAFile("in1.txt"/*frame.chooseAFile()*/);
 		
 		
 		startTime = System.currentTimeMillis();

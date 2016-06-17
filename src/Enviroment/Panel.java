@@ -32,7 +32,6 @@ public class Panel extends JPanel {
 	 * Prints actual speed of the car.
 	 */
 	private void drawCarSpeed() {
-		// TODO Auto-generated method stub
 		Integer speed = new Integer((int) Math.floor(carSpeed));
 		g2.drawString(speed.toString(), 10, 30);
 	}

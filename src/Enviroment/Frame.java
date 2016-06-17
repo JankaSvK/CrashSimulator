@@ -3,6 +3,7 @@ package Enviroment;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.geom.*;
+import java.io.File;
 
 public class Frame {
 	JFrame frame = new JFrame("CrashSimulator");
@@ -14,6 +15,8 @@ public class Frame {
 		panel.setPreferredSize(new Dimension(800,600));
 		frame.add(panel);
 		
+		//TODO: doplnit scrollbary
+		
 		frame.pack();
 		frame.setVisible(true);	
 	}
@@ -21,6 +24,22 @@ public class Frame {
 	public void close(){
 		frame.setVisible(false);
 		frame.dispose();
+	}
+	
+	public String chooseAFile() {
+		JFileChooser fileChooser = new JFileChooser();
+		//fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+		fileChooser.setApproveButtonText("Select");
+		fileChooser.setDialogTitle("Selection of input file");
+		int result = fileChooser.showOpenDialog(frame);
+		if (result == JFileChooser.APPROVE_OPTION) {
+		    File selectedFile = fileChooser.getSelectedFile();
+		    return selectedFile.getAbsolutePath();
+		} else {
+			System.out.println("No selected file, exiting");
+			System.exit(1);
+			return null;
+		}
 	}
 	
 	/**

@@ -1,5 +1,9 @@
 package Enviroment;
 
+import java.io.File;
+
+import javax.swing.JFileChooser;
+
 /**
  * @author Jana Bátoryová
  *
@@ -14,17 +18,19 @@ public class Enviroment{
 	
 	public final double INF = 9999;
 	
-	public Enviroment(String name){
+	public Enviroment(){
+		
+		frame = new Frame();	
+		reader = new ReadingFromAFile(frame.chooseAFile());
+		
 		
 		startTime = System.currentTimeMillis();
 		
 		car = new Car(startTime, this);
 		pendant = new Pendant(startTime);
-		frame = new Frame();	
 		
-		reader = new ReadingFromAFile(name);
 		printAndSetReadedConstants(car, pendant);
-	
+		
 		
 		boolean crash = false;
 		double actTime = System.currentTimeMillis();

@@ -72,5 +72,10 @@ public class Frame {
 		panel.crash = true;
 		panel.repaint();
 	}
+
+	public void inputConstraints(double speedKM, double maxSlowdown, double prendantSpeed,
+			int angle) {
+		panel.setInputConstraints(speedKM, maxSlowdown, prendantSpeed, angle);
+	}
 	
 }

@@ -21,7 +21,7 @@ public class Enviroment{
 	public Enviroment(){
 		
 		frame = new Frame();	
-		reader = new ReadingFromAFile("in1.txt"/*frame.chooseAFile()*/);
+		reader = new ReadingFromAFile(frame.chooseAFile());
 		
 		
 		startTime = System.currentTimeMillis();
@@ -34,7 +34,7 @@ public class Enviroment{
 		
 		boolean crash = false;
 		double actTime = System.currentTimeMillis();
-		while (actTime - startTime <= 15000) {
+		while (actTime - startTime <= 16000) {
 			actTime = System.currentTimeMillis();
 			
 			car.actualize(actTime);
@@ -77,6 +77,8 @@ public class Enviroment{
 		car.maxSlowdown = reader.maxSlowDown;
 		car.angle = reader.angle;
 		p.speed = reader.speedPendant / 3.6;
+		
+		frame.inputConstraints(car.speedKM(), car.maxSlowdown, pendant.speed * 3.6, car.angle);
 		
 		echo("Simulation was setuped to these constants:");
 		echo("Speed of the car: " + car.speedKM());
